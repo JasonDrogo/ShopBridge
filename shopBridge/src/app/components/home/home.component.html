@@ -1,1 +1,11 @@
-<p>home works!</p>
+
+<button class="btn-md btn-outline-success" (click)="upload()"><strong>Upload Item</strong></button>
+<br>
+<br>
+
+<div class="card-conatiner" >
+    
+ 
+    <app-card *ngFor="let item of data"  [item] = 'item'></app-card>
+    
+</div>

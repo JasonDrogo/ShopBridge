@@ -5,13 +5,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 const routes: Routes = [
-  {path:"",component:NavbarComponent, children:[
-    {path:"",component:HomeComponent}
+  {path:"",component: NavbarComponent, children:[
+    
+    {path:"",component: HomeComponent}
+    
   ]}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule,RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
