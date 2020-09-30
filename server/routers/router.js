@@ -12,7 +12,7 @@ module.exports = (app) => {
  
 
 app.get('/data', (req,res)=> {
-    connection.query('select * from items', function (err, records) {
+    connection.query('select * from items', (err, records)=>{
             
         if (err) console.log(err)
 
@@ -25,19 +25,32 @@ app.get('/data', (req,res)=> {
 app.post('/postData',(req,res)=> {
   
  
-  connection.query('INSERT INTO items SET ?',req.body, function (err, records) {
+  connection.query('INSERT INTO items SET ?',req.body, (err, records)=> {
             
     if (err) console.log(err)
-return records;
+    else res.send(records);
   
     
 })
 });
-app.get('/users/:id', (req,res)=> {
+app.post('/postToShopping',(req,res)=>{
+  console.log(req.body);
+  connection.query('INSERT INTO shoppingCart SET ?',req.body,(err,records)=>{
+    if(err) console.log(err);
+    else res.send(records);
+  })
+});
 
-  userRepository.UserInfo(req.params.id).then(data =>res.json( data))
+
+app.get('/getShoppingCart', (req,res)=> {
+  connection.query('select * from shoppingCart', (err, records)=>{
+          
+      if (err) console.log(err)
+      // send records as a response
+   else res.send(records);
+      
+  });
+
 })
-app.put('/users/:id',(req,res) =>{
 
-  userRepository.update(req.body,req.params.id).then(profiles => res.json(profiles))});
 }

@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UploadModalComponent } from './components/upload-modal/upload-modal.component';
 import { RouterModule } from '@angular/router';
+import { MainServiceService } from 'src/services/main-service.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { RouterModule } from '@angular/router';
     DemoMaterialModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [MainServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

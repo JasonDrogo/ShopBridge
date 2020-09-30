@@ -18,12 +18,13 @@ show : boolean = true;
   ngOnInit(): void {
     $(".success").prop("disabled", true);
   }
-  upload(){
-   console.log( this.item);
-    this.mainService.uploadItem(this.item).subscribe((success)=>{
-      console.log(success);
-      this.dialogRef.close();
+  upload=()=>{
+   
+    this.mainService.uploadItem(this.item).subscribe((success:any)=>{
+      alert("Uploaded");
+      this.okPress();
     })
+    
   }
   
   okPress(): void {
