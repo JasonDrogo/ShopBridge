@@ -1,8 +1,8 @@
 var config = {
     host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'db'
+    user: '',
+    password: '',
+    database: ''
 };
 module.exports = {
     config
