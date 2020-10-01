@@ -14,10 +14,18 @@ data:any[];
 
   ngOnInit(): void {
 this.getAllitems();
+this.getCartData();
   }
   getAllitems(){
     this._mainService.getAllItems().subscribe((data)=>{
       this.data = data;
+    })
+  }
+  getCartData(){
+    this._mainService.getdataShoppingCart().subscribe((data)=>{
+      this._mainService.cartData = data;
+  
+     
     })
   }
 

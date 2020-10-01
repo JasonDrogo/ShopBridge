@@ -8,11 +8,12 @@ import { DemoMaterialModule } from './material.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { CardComponent } from './components/card/card.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UploadModalComponent } from './components/upload-modal/upload-modal.component';
 import { RouterModule } from '@angular/router';
 import { MainServiceService } from 'src/services/main-service.service';
+import { MainInterceptor } from 'src/services/main.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { MainServiceService } from 'src/services/main-service.service';
     DemoMaterialModule,
     HttpClientModule
   ],
-  providers: [MainServiceService],
+  providers: [MainServiceService,{ provide: HTTP_INTERCEPTORS, useClass: MainInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

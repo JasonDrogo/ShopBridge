@@ -11,14 +11,14 @@ import { MainServiceService } from 'src/services/main-service.service';
 export class CardComponent implements OnInit {
 @Input() item : any;
   constructor(private sanitizer: DomSanitizer,private dataService : MainServiceService) { }
-cartData :any[]=[];
+cartData :any[]=this.dataService.cartData;
 
   ngOnInit(): void {
     if(!this.item.image.url)
     this.getImage(this.item.image.data);
   }
   ngOnChanges(changes : SimpleChange){
-     this.getdataFromShoppinCart();
+ 
   }
   getImage(item){
     let TYPED_ARRAY = new Uint8Array(item);
@@ -27,9 +27,11 @@ cartData :any[]=[];
 
     this.item.image.url = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + base64String);
   }
-  saveToBag(item){
-      let item_To_be_Pushed ={
-        id : item.id,
+
+
+  saveToBag(item){ 
+      let item_To_be_Pushed = {
+          id : item.id,
           name:item.name,
           description:item.description,
           price :item.price, 
@@ -40,14 +42,21 @@ cartData :any[]=[];
         this.getdataFromShoppinCart();
     })
   }
+
+
   getdataFromShoppinCart(){
     this.dataService.getdataShoppingCart().subscribe((data:any)=>{
 this.cartData = data;
+this.dataService.cartData = data;
+
+
+
     });
   }
   verify(id : number,buttonName : string){
 let a = this.cartData.findIndex(a => a.id ==id);
-if(a){
+
+if(a != -1){
   if(buttonName == 'save')
   return true;
   else return false
@@ -59,5 +68,12 @@ else{
   }
 }
  
+
+removeFromBag(item:any){
+  if(confirm("Do You Want to Delete "+item.name + " from your cart ?"))
+this.dataService.deleteFromCart(item.id).subscribe((data)=>{
+  this.getdataFromShoppinCart();
+})
+}
 
 }

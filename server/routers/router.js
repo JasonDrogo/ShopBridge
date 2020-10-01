@@ -53,4 +53,12 @@ app.get('/getShoppingCart', (req,res)=> {
 
 })
 
+
+app.delete('/deleteItem/:id',(req,res)=>{
+  connection.query(`delete from shoppingCArt where id = ${req.params.id}`,(err,records)=>{
+    if (err) console.log(err);
+    else res.send(records);
+  })
+})
+
 }
