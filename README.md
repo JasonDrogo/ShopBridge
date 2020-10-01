@@ -6,3 +6,6 @@
 ## Running server node server.js
 
 ## Running client npm start
+
+
+![Optional Text](../dev1/shopBridge/applicationHome.JPG)
