@@ -10,10 +10,14 @@
       <p>
        {{item.description}}
       </p>
+      
     </mat-card-content>
     <mat-card-actions>
       <button mat-button class="alert-primary" [disabled]="verify(item.id,'save')" (click)="saveToBag(item)">Add to Bag</button> 
        <button mat-button class="alert-warning" [disabled]="verify(item.id,'remove')" (click)="removeFromBag(item)">Remove</button> 
+       <button mat-button (click)="routeTo(item.id)" >
+        <mat-icon>info</mat-icon>
+        </button>
     </mat-card-actions>
   </mat-card>
  

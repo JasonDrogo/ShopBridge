@@ -14,6 +14,7 @@ import { UploadModalComponent } from './components/upload-modal/upload-modal.com
 import { RouterModule } from '@angular/router';
 import { MainServiceService } from 'src/services/main-service.service';
 import { MainInterceptor } from 'src/services/main.interceptor';
+import { InformationComponent } from './information/information.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MainInterceptor } from 'src/services/main.interceptor';
     NavbarComponent,
     HomeComponent,
     CardComponent,
-    UploadModalComponent
+    UploadModalComponent,
+    InformationComponent
   ],
   imports: [
     BrowserModule,

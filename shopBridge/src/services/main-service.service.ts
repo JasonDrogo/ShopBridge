@@ -32,5 +32,9 @@ return this._http.get<any>('http://localhost:3000/data');
     public deleteFromCart(id:number):Observable<any>{
       return this._http.delete<any>(`http://localhost:3000/deleteItem/${id}`)
     }
+
+    public getInformation(id:number):Observable<any>{
+return this._http.get<any>(`http://localhost:3000/info/${id}`);
+    }
   }
 

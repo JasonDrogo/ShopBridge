@@ -1,0 +1,25 @@
+1. Use Mysql 
+
+2. Use your credentials in config.env.js
+
+3. Schema for items table:
+
+    {
+        id int(10) NOT NULL auto_increment,
+        name varchar(20),
+        description varchar(50),
+        price int(10),
+        image blob,
+        primary key (`id`)
+
+    }
+
+
+4. Schema for shoppingCArt Table:
+
+  {
+      id int(10),
+      name varchar(20),
+      description varchar(50),
+      price int(10)
+  }

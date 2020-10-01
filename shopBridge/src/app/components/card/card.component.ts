@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 import { MainServiceService } from 'src/services/main-service.service';
 
@@ -10,7 +11,7 @@ import { MainServiceService } from 'src/services/main-service.service';
 })
 export class CardComponent implements OnInit {
 @Input() item : any;
-  constructor(private sanitizer: DomSanitizer,private dataService : MainServiceService) { }
+  constructor(private sanitizer: DomSanitizer,private dataService : MainServiceService , private router : Router) { }
 cartData :any[]=this.dataService.cartData;
 
   ngOnInit(): void {
@@ -76,4 +77,8 @@ this.dataService.deleteFromCart(item.id).subscribe((data)=>{
 })
 }
 
+
+routeTo(id : number){
+  this.router.navigateByUrl(`/information/${id}`);
+}
 }
