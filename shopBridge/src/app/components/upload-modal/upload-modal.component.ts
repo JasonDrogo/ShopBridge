@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import * as  $  from 'jquery';
 
@@ -12,11 +12,16 @@ import { MainServiceService } from 'src/services/main-service.service';
 })
 export class UploadModalComponent implements OnInit {
 item : any={};
-show : boolean = true;
-  constructor(public dialogRef: MatDialogRef<UploadModalComponent>,public mainService : MainServiceService) { }
 
+  constructor(public dialogRef: MatDialogRef<UploadModalComponent>,public mainService : MainServiceService,private fb: FormBuilder) { }
+  uploadForm = this.fb.group({
+    name:['',Validators.required],
+    description:['',Validators.required],
+    price:[,Validators.required],
+    image:[,Validators.required]
+  })
   ngOnInit(): void {
-    $(".success").prop("disabled", true);
+ 
   }
   upload=()=>{
    
@@ -32,17 +37,21 @@ show : boolean = true;
     this.dialogRef.close();
   }
   readUrl(event:any) {
-  this.show = true;
-    if (event.target.files && event.target.files[0]) {
+  
+  
+  
+    if ( event.target.files && event.target.files[0] ) {
       var reader = new FileReader();
   
       reader.onload = (event: ProgressEvent) => {
       
         this.item.image =  (<FileReader>event.target).result;
-        $(".success").prop("disabled", false);
+
+       
       }
       reader.readAsDataURL(event.target.files[0]);
     }
+  
   }
 
 }

@@ -1,6 +1,7 @@
+
 .card-conatiner{
     border: 5px ridge lightskyblue;
-    
+    position: absolute;
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,7 +13,6 @@
 }
 button{
     border: 2px ridge lightslategray;
-    border-radius: 7px;
     color: black;
     float: right;
     margin-right: 10px;

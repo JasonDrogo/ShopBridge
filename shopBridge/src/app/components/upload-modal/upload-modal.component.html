@@ -2,26 +2,28 @@
     <h4 class="modal-title pull-left">Upload Item</h4>
   </div>
   <div class="modal-body">
-      <form #f="ngForm" >
+      <form [formGroup]="uploadForm" (ngSubmit) = "upload()" >
           <div class="form-group">
           <div class="row">  
-   <label>Name</label>   <input type= "text" name="name" class="form-control" [(ngModel)]="item.name" required>
+   <label class="required">Name</label>   <input type= "text" name="name" class="form-control" placeholder="Joker Miniature" formControlName="name" [(ngModel)]="item.name" >
 </div>  
 <br>
 <div class="row"> 
-   <label class="col-2">Description</label> <textarea class="col-4" name="description" class="form-control" [(ngModel)]="item.description" required></textarea>
+   <label class="required">Description</label> <textarea class="col-4" name="description" placeholder="Miniature" class="form-control" formControlName="description" [(ngModel)]="item.description" ></textarea>
 </div>
 <br>
    <div class="row"> 
-   <label>Price</label> <input name ="price" type="number" class="form-control" [(ngModel)]="item.price" required>
+   <label class="required">Price</label> <input name ="price" type="number" class="form-control" placeholder="2000" formControlName="price" [(ngModel)]="item.price" >
    </div>
    <br>
    <div class="row"> 
-   <label>Image</label> <input name="file" type="file" class="form-control" (change)="readUrl($event)" required>
+   <label class="required">Image (only jpg)</label> <input name="file"  accept="image/jpeg"  type="file" class="form-control" formControlName="image" (change)="readUrl($event)"  >
    </div>
    <br>
    </div>
-   <button  class="success" type="submit" (click)="upload()">Upload</button>
+   <button  class="btn-md btn-outline-success" type="submit"  [title]="uploadForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+   [disabled]="!uploadForm.valid" >Upload</button>
+   <span class="spacer"></span>
    <button type="button" class="btn btn-primary-functional btn-small" (click)="okPress()">Cancel</button>
    </form>
 

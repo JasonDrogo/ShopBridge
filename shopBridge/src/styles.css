@@ -2,3 +2,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: cursive; background: palegoldenrod;  }
+.required::after{
+    content: "  (*)";
+    color: red;
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
+  .btn-md{
+    border-radius: 5px;
+  }

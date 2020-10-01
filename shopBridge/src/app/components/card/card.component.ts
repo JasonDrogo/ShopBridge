@@ -15,18 +15,19 @@ export class CardComponent implements OnInit {
 cartData :any[]=this.dataService.cartData;
 
   ngOnInit(): void {
-    if(!this.item.image.url)
-    this.getImage(this.item.image.data);
+    
+    
   }
   ngOnChanges(changes : SimpleChange){
- 
+    this.getImage(this.item.image.data);
   }
   getImage(item){
     let TYPED_ARRAY = new Uint8Array(item);
     const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
     let base64String = btoa(STRING_CHAR);
 
-    this.item.image.url = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + base64String);
+    this.item.image.url = this.sanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + base64String);
+    
   }
 
 
@@ -39,7 +40,7 @@ cartData :any[]=this.dataService.cartData;
       }
     this.dataService.uploadToShippingCart(item_To_be_Pushed).subscribe((data:any)=>{
         alert("Added to Cart");
-        console.log(data);
+        
         this.getdataFromShoppinCart();
     })
   }
